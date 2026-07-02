@@ -25,6 +25,7 @@ type Order struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	User          *User                  `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	Address       *Address               `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -73,15 +74,69 @@ func (x *Order) GetUser() *User {
 	return nil
 }
 
+func (x *Order) GetAddress() *Address {
+	if x != nil {
+		return x.Address
+	}
+	return nil
+}
+
+type Address struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Area          string                 `protobuf:"bytes,1,opt,name=area,proto3" json:"area,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Address) Reset() {
+	*x = Address{}
+	mi := &file_order_order_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Address) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Address) ProtoMessage() {}
+
+func (x *Address) ProtoReflect() protoreflect.Message {
+	mi := &file_order_order_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Address.ProtoReflect.Descriptor instead.
+func (*Address) Descriptor() ([]byte, []int) {
+	return file_order_order_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Address) GetArea() string {
+	if x != nil {
+		return x.Area
+	}
+	return ""
+}
+
 var File_order_order_proto protoreflect.FileDescriptor
 
 const file_order_order_proto_rawDesc = "" +
 	"\n" +
-	"\x11order/order.proto\x12\x05order\x1a\x0fuser/user.proto\"7\n" +
+	"\x11order/order.proto\x12\x05order\x1a\x0fuser/user.proto\"a\n" +
 	"\x05Order\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\v2\n" +
-	".user.UserR\x04userB\x12Z\x10/proto/gen;genpbb\x06proto3"
+	".user.UserR\x04user\x12(\n" +
+	"\aaddress\x18\x03 \x01(\v2\x0e.order.AddressR\aaddress\"\x1d\n" +
+	"\aAddress\x12\x12\n" +
+	"\x04area\x18\x01 \x01(\tR\x04areaB\x12Z\x10/proto/gen;genpbb\x06proto3"
 
 var (
 	file_order_order_proto_rawDescOnce sync.Once
@@ -95,18 +150,20 @@ func file_order_order_proto_rawDescGZIP() []byte {
 	return file_order_order_proto_rawDescData
 }
 
-var file_order_order_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_order_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_order_order_proto_goTypes = []any{
-	(*Order)(nil), // 0: order.Order
-	(*User)(nil),  // 1: user.User
+	(*Order)(nil),   // 0: order.Order
+	(*Address)(nil), // 1: order.Address
+	(*User)(nil),    // 2: user.User
 }
 var file_order_order_proto_depIdxs = []int32{
-	1, // 0: order.Order.user:type_name -> user.User
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 0: order.Order.user:type_name -> user.User
+	1, // 1: order.Order.address:type_name -> order.Address
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_order_order_proto_init() }
@@ -121,7 +178,7 @@ func file_order_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_order_order_proto_rawDesc), len(file_order_order_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
